@@ -35,3 +35,32 @@ sports.col3.formelement {
 .sports.col3.formelement {
     padding-right: 87px;
 }
+
+.submitbtn {
+    background-color: #111827;
+    border: 1px solid transparent;
+    border-radius: 19px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: center;
+}
+
+.submitbtn:hover {
+  background-color: #7099db;
+  color: #111827;
+}
+
+.submitbtn:focus {
+  box-shadow: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .submitbtn {
+    padding: 10px 16px;
+  }
+}

@@ -6,8 +6,9 @@ registerform.addEventListener("submit", (e) =>{
         alert("Not submitted");
         return;
     }
- 
-    registerform.submit();
+    submitForm();
+    registerform.reset();
+    //registerform.submit();
 });
 
 // document.getElementById("form-submit").onclick = validatefn();
@@ -15,8 +16,8 @@ registerform.addEventListener("submit", (e) =>{
 function validatefn(){
     dateCheckResponse = datecheck();
     emailCheckResponse = emailCheck();
-    pswdCheckResponse = passwordCheck();
-    console.log("date is"+dateCheckResponse);
+    //pswdCheckResponse = passwordCheck();
+    pswdCheckResponse = true;
     if(dateCheckResponse == false){
         alert("Invalid date");
         return false;
@@ -52,7 +53,7 @@ function datecheck(){
 
     function emailCheck(){
         var regexValue = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        var inputEmail = document.getElementById("form-email").value;
+        inputEmail = document.getElementById("form-email").value;
         if(inputEmail.match(regexValue)){
             return true;
         }
@@ -60,6 +61,7 @@ function datecheck(){
             return false;
         }
     }
+let inputEmail;
 
 function passwordCheck(){
     var pswd1 = document.getElementById("password").value;
@@ -70,4 +72,32 @@ function passwordCheck(){
     else{
         return false;
     }
+}
+let submitForm = () =>{
+    let regDetails = localStorage.getItem('creds') != null? JSON.parse(localStorage.getItem('creds')) : []; 
+    const email = document.getElementById("form-email").value;
+    const password = document.getElementById("password").value;
+    const name = document.getElementById("firstName").value +" "+ document.getElementById("lastName").value;
+    const phone = document.getElementById("phoneNo").value;
+    const dob = document.getElementById("mm").value+"/"+document.getElementById("dd").value+"/"+document.getElementById("yyyy").value;
+    const genderRadio = document.querySelectorAll('input[name = "gender"]')
+    for(const radiobtn of genderRadio){
+        if(radiobtn.checked){
+            gender = radiobtn.value;
+            break;
+        }  
+    }
+    console.log(dob,'dob');
+    console.log(gender,'gender');
+    
+
+regDetails.push({
+    name: name,
+    email: email,
+    password: password,
+    dob: dob
+
+})
+    console.log(regDetails,'regdetails');
+    localStorage.setItem('creds', JSON.stringify(regDetails));
 }

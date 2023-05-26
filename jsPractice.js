@@ -28,6 +28,9 @@ function activeElement(){
     console.log(element);
 }
 
- document.addEventListener("click", myfn(){
-    document.getElementById("h1").innerHTML= "Now changed";
-});
+document.addEventListener("click", function({
+    document.getElementById("")
+}));
+
+
+
